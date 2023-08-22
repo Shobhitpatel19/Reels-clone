@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 function Login() {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -31,12 +31,21 @@ function Login() {
 
     setLoader(false);
   };
+  const signout = async function(){
+    await signOut(auth);
+    setUser(null);
+  }
 
   return (
     <>
       {error != "" ? (<h1>Error is {error}</h1>) : 
       loader == true ? (<h1>... Loading</h1>) : 
-      user != null ? (<h1>user is {user.uid}</h1>) :
+      user != null ? 
+      <>
+        <button onClick={signout}>Signout</button>
+        <h1>user is {user.uid}</h1>
+      </>
+       :
       (
         <>
           <input
