@@ -1,0 +1,43 @@
+body{
+    margin: 2.5rem;
+    font-family: sans-serif;
+}
+
+.header{
+    height: 2.5rem;
+    border-bottom: 2px solid grey;
+}
+
+.pimg{
+    height: 20rem;
+    width: 20rem;
+    border-radius: 50%;
+}
+
+.content{
+    line-height: 1.5;
+    font-size: 1.5rem;
+    color: gray;
+}
+
+.main{
+    display: flex;
+    height: calc(100vh - 10rem);
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.details{
+    text-align: center;
+    margin-top: 6rem;
+}
+
+.main>* {
+    height: 80%;
+    width: 40%;
+}
+
+.bold_text{
+    font-weight: bold;
+    color: black;
+}
