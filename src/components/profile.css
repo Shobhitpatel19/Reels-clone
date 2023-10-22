@@ -32,6 +32,12 @@ body{
     margin-top: 6rem;
 }
 
+.content{
+    line-height: 1.5;
+    font-size: 1.5rem;
+    color: grey;
+}
+
 .main>* {
     height: 80%;
     width: 40%;
