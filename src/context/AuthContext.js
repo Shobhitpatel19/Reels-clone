@@ -3,6 +3,7 @@ import {auth} from "../firebase";
 import {onAuthStateChanged} from "firebase/auth"
 
 export const AuthContext = React.createContext();
+// Children is an inbuilt prop -> it refers to all the component specified inside
 export function AuthContextProvider({children}){
     let [mainLoader, setMainLoader] = useState(true);
     let [cUser, setUser] = useState(null);
@@ -20,10 +21,10 @@ export function AuthContextProvider({children}){
             // ...
             setUser(null);
           }
-          setMainLoader(false);
+          setMainLoader(false); 
         });
     }, []);
-    let value = {cUser};
+    let value = cUser;
     return(
         <AuthContext.Provider value={value}>
             {mainLoader == false && children}
