@@ -14,21 +14,22 @@ function App() {
       <AuthContextProvider>
         <Switch>
           {/* Route -> which components should render on which path */}
-          <Route path="/login">
-            <Login></Login>
-          </Route>
-          <Route path="/signup">
-            <Signup></Signup>
-          </Route>
-          <PrivateRoute path="/feed" comp={<Feed></Feed>}>
+          <RedirectToFeed path="/login" comp={Login}>
+            
+          </RedirectToFeed>
+          <RedirectToFeed path="/signup" comp={Signup}>
+           
+          </RedirectToFeed>
+          <PrivateRoute path="/feed" comp={Feed}>
             
           </PrivateRoute>
-          <PrivateRoute path="/profile" comp={<Profile></Profile>}>
+          <PrivateRoute path="/profile" comp={Profile}>
             
           </PrivateRoute>
           <Route>
             <PageNotFound></PageNotFound>
           </Route>
+          <Redirect from="/" to="/feed"></Redirect>
         </Switch>
       </AuthContextProvider>
     </>
@@ -48,6 +49,26 @@ function PrivateRoute(props){
       render={
         (props) => {
           return cUser != null ? <Component {...props}></Component> : <Redirect {...props} to="/login"></Redirect>
+        }
+      }
+    ></Route>
+  )
+}
+
+function RedirectToFeed(props){
+  let Component = props.comp;
+
+  // check -> Are you logged in?
+  let cUser = useContext(AuthContext);
+
+  //cUser == null => login page
+  return(
+    <Route
+      {...props}
+      render={
+        (props) => {
+          //logic
+          return cUser != null ? <Redirect {...props} to="/feed"></Redirect> : <Component {...props} ></Component>
         }
       }
     ></Route>
