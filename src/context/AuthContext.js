@@ -9,7 +9,7 @@ export function AuthContextProvider({children}){
     let [cUser, setUser] = useState(null);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
           if (user) {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/auth.user
@@ -21,7 +21,8 @@ export function AuthContextProvider({children}){
             // ...
             setUser(null);
           }
-          setMainLoader(false); 
+          setMainLoader(false);
+          return unsubscribe;
         });
     }, []);
     let value = cUser;

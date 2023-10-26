@@ -15,21 +15,22 @@ function App() {
         <Switch>
           {/* Route -> which components should render on which path */}
           <RedirectToFeed path="/login" comp={Login}>
-            
           </RedirectToFeed>
+          
           <RedirectToFeed path="/signup" comp={Signup}>
-           
           </RedirectToFeed>
-          <PrivateRoute path="/feed" comp={Feed}>
-            
+
+          <PrivateRoute path="/feed" comp={Feed}> 
           </PrivateRoute>
+
           <PrivateRoute path="/profile" comp={Profile}>
-            
           </PrivateRoute>
+
+          <Redirect from="/" to="/feed"></Redirect>
+
           <Route>
             <PageNotFound></PageNotFound>
           </Route>
-          <Redirect from="/" to="/feed"></Redirect>
         </Switch>
       </AuthContextProvider>
     </>
